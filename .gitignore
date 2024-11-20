@@ -1,0 +1,21 @@
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Dd]ist/
+[Dd]istPublic/
+bin/
+obj/
+
+# User-specific files
+.env
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
