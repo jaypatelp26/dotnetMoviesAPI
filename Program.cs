@@ -10,7 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Register MongoDB client
 builder.Services.AddSingleton<IMongoClient, MongoClient>(sp =>
 {
-    return new MongoClient(builder.Configuration.GetConnectionString("MongoDB"));
+    DotNetEnv.Env.Load();
+    Console.WriteLine($"Connection String: {Environment.GetEnvironmentVariable("MONGO_CONNECTION_STRING")}");
+    var connectionString = Environment.GetEnvironmentVariable("MONGO_CONNECTION_STRING");
+    //return new MongoClient(builder.Configuration.GetConnectionString("MONGO_CONNECTION_STRING"));
+    return new MongoClient(connectionString);
 });
 
 // Register MoviesDbContext
