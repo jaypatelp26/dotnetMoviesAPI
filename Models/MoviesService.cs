@@ -14,7 +14,10 @@ namespace MoviesAPI.Models
         {
             var filter = title != null ? Builders<Movie>.Filter.Regex("Title", new MongoDB.Bson.BsonRegularExpression(title, "i")) : Builders<Movie>.Filter.Empty;
 
-            return await _dbContext.Movies.Find(filter).Sort(Builders<Movie>.Sort.Ascending(m => m.Year)).Skip((page - 1) * perPage).Limit(perPage).ToListAsync();
+            var movies = await _dbContext.Movies.Find(filter).Sort(Builders<Movie>.Sort.Ascending(m => m.Year)).Skip((page - 1) * perPage).Limit(perPage).ToListAsync();
+
+            return movies;
+
         }
 
         public async Task<Movie> GetMovieById(string id)

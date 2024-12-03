@@ -20,7 +20,8 @@ namespace MoviesAPI.Controllers
         {
             try
             {
-                return Ok(await _moviesService.GetMovies(page, perPage, title));
+                var movies = await _moviesService.GetMovies(page, perPage, title);
+                return Ok(new { movies });
             }
             catch (Exception ex)
             {
